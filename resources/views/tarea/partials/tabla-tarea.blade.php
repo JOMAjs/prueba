@@ -4,7 +4,7 @@
     use Carbon\Carbon;  
 @endphp
 <div class="table-responsive">
-    <table class="table table-bordered">
+    <table class="table table table-bordered">
         <thead class="thead-primary">
             <tr class="">
                 <th nowrap scope="col">No.</th>
@@ -26,12 +26,15 @@
                 @if (EEstado::index(EEstado::COMPLETADA)->getId() === $tareas->estado)
                  <td><small>deshabilitado</small></td>
                 @else 
-                <td>
+                <td nowrap>
                     <a class="btn btn-sm btn-primary btn-abrir-formulario" data-codtarea="{{$id}}">
-                        <i class="fa fa-angle-right"></i>
+                        <i class="fa fa-edit"></i>
                     </a>
                     <a class="btn btn-sm btn-danger btn-eliminar" data-codtarea="{{$id}}">
                         <i class="fa fa-trash"></i>
+                    </a>
+                    <a class="btn btn-sm btn-primary btn-abrir-formulario-estado" data-codtarea="{{$id}}">
+                        <i class="fa fa-angle-right"></i>
                     </a>
                 </td>
                 @endif
@@ -42,5 +45,7 @@
 </div>
 
 <script>
-
+   $(function () {
+        $(".table").dataTable();
+    });
 </script>

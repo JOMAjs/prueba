@@ -32,13 +32,7 @@ class TareasController extends Controller
 
     public function reporte()
     {
-        
-      
-
-        return view('tarea.mostrar_reporte', [
-            'listTarea' => Tarea::where('estado',1)->count(),
-        ]);
-
+        return view('tarea.mostrar_reporte');
     }
 
     public function create(Request $request)
@@ -83,6 +77,9 @@ class TareasController extends Controller
           'formulario_tarea' => view('tarea.partials.form-tarea', [
               'tarea' => $tareas
           ])->render(),
+          'formulario_estado' => view('tarea.partials.form-estado', [
+            'tarea' => $tareas 
+           ])->render(),
         ]); 
     }
 

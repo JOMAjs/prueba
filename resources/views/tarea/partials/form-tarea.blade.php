@@ -10,6 +10,7 @@
 
     <hr>
     <form id="form-tarea">
+        
         <input type="hidden" name="codtarea" id="codtarea" value="{{$tarea->id}}">
         <div class="form-group">
           <label for="nombre">Nombre</label>

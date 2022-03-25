@@ -39,12 +39,15 @@
                                         @if (EEstado::index(EEstado::COMPLETADA)->getId() === $tareas->estado)
                                          <td><small>deshabilitado</small></td>
                                         @else 
-                                        <td>
+                                        <td nowrap>
                                             <a class="btn btn-sm btn-primary btn-abrir-formulario" data-codtarea="{{$id}}">
-                                                <i class="fa fa-angle-right"></i>
+                                                <i class="fa fa-edit"></i>
                                             </a>
                                             <a class="btn btn-sm btn-danger btn-eliminar" data-codtarea="{{$id}}">
                                                 <i class="fa fa-trash"></i>
+                                            </a>
+                                            <a class="btn btn-sm btn-primary btn-abrir-formulario-estado" data-codtarea="{{$id}}">
+                                                <i class="fa fa-angle-right"></i>
                                             </a>
                                         </td>
                                         @endif
@@ -64,6 +67,12 @@
 
 @section('scripts')
     <script>
+        $(function () {
+             $(".table").dataTable();
+        });
+
+
+
         $(document).on("click", ".btn-abrir-formulario", function(){
             var codtarea = $(this).data("codtarea");
             $.ajax({
@@ -81,6 +90,25 @@
                 },
             });
         });
+
+        $(document).on("click", ".btn-abrir-formulario-estado", function(){
+            var codtarea = $(this).data("codtarea");
+            $.ajax({
+                method: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': $('[name="_token"]').attr('content')
+                },
+                url: "{{route('tarea.abrir-formulario-estado')}}",
+                data: {
+                    codtarea: codtarea,
+                },
+                success: function(respuesta) {
+                    console.log(respuesta)
+                    $("#formulario-contenedor").html(respuesta.formulario_estado);
+                },
+            });
+        });
+
         $(document).on("click", ".btn-eliminar", function(){
             var codtarea = $(this).data("codtarea");
             var confirmacion = window.confirm('¿Desea eliminar la tarea?');

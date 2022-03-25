@@ -1,6 +1,8 @@
 <?php
 
+use App\Tarea;
 use Illuminate\Database\Seeder;
+use Database\Factories\TareaFactory;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,6 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+       
+         $this->call(TareasTableSeeder::class);
+         $this->call(UserTableSeeder::class);
     }
 }

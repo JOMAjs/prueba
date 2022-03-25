@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 Route::get('tareas', 'TareasController@index')->name('tarea.home');
 Route::post('tareas-formulario','TareasController@show')->name('tarea.abrir-formulario');
+Route::post('tareas-formulario-estado','TareasController@show')->name('tarea.abrir-formulario-estado');
 Route::post('tareas-guardar', 'TareasController@create')->name('tarea.guardar');
 Route::post('tareas-eliminar','TareasController@destroy')->name('tarea.eliminar');
 

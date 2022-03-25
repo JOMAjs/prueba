@@ -30,7 +30,10 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/tareas') }}">
-                  Tu {{ Auth::user()->nombre }}
+                  @guest
+                      @else 
+                      Tu {{Auth::user()->nombre}}
+                  @endguest
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -102,9 +105,7 @@
          <script src="{{asset('plugins/jquery-validate/additional-methods.min.js') }}"></script>
          <script src="{{asset('plugins/jquery-validate/messages_es.min.js') }}"></script>
      <script>
-         $(function () {
-             $(".table").dataTable();
-        });
+      
      </script>
        @yield('scripts')
 
